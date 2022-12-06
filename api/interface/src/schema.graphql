@@ -1,9 +1,9 @@
 type Module {
-  cat(cid: String!, options: Options): Bytes! @env(required: true)
+  cat(cid: String!, options: Options): Bytes!
 
-  resolve(cid: String!, options: Options): ResolveResult @env(required: true)
+  resolve(cid: String!, options: Options): ResolveResult
 
-  addFile(data: Bytes!): String! @env(required: true)
+  addFile(data: Bytes!): String!
 }
 
 type ResolveResult {

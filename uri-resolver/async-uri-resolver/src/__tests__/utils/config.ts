@@ -14,7 +14,7 @@ export function getClientConfig(
   const ipfsResolverPath = path.resolve(path.join(__dirname, "/../../../build"));
   const ipfsResolverUri = `wrap://fs/${ipfsResolverPath}`;
 
-  const ipfsClientPath = path.resolve(path.join(__dirname, "/../../../../wrapper-ipfs-resolver-client/build"));
+  const ipfsClientPath = path.resolve(path.join(__dirname, "/../../../../../http-client/ipfs-http-client/build"));
   const ipfsClientUri = `wrap://fs/${ipfsClientPath}`;
 
   const concurrencyInterfacePath = path.resolve(path.join(__dirname, "/../../../../../../../system/concurrency/interface/build"));
