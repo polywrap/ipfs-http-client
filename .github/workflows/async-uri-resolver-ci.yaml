@@ -1,0 +1,47 @@
+name: async-uri-resolver-ci
+
+on:
+  pull_request:
+    paths:
+      - "uri-resolver/async-uri-resolver/**"
+
+jobs:
+  ci:
+    name: async-uri-resolver-ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Read .nvmrc
+        run: echo ::set-output name=NVMRC::$(cat .nvmrc)
+        id: nvm
+        working-directory: ./uri-resolver/async-uri-resolver
+
+      - name: Setup Node.js
+        uses: actions/setup-node@master
+        with:
+          node-version: '${{ steps.nvm.outputs.NVMRC }}'
+
+      - name: Install dependencies
+        run: yarn install --nonInteractive --frozen-lockfile --prefer-offline
+        working-directory: ./uri-resolver/async-uri-resolver
+
+      - name: Build
+        run: yarn build
+        working-directory: ./uri-resolver/async-uri-resolver
+
+      # for now, need to build http-plugin-timeout before testing wrapper
+      - name: Install http plugin dependencies and build plugin
+        run: yarn install --nonInteractive --frozen-lockfile --prefer-offline && yarn build
+        working-directory: ./http-plugin-timeout
+
+      # need to build ipfs-cat-client before testing wrapper
+      - name: build ipfs cat client wrapper
+        run: yarn install --nonInteractive --frozen-lockfile --prefer-offline && yarn build
+        working-directory: ./http-client/ipfs-cat-client
+
+      - name: Test
+        run: yarn test
+        working-directory: ./uri-resolver/async-uri-resolver

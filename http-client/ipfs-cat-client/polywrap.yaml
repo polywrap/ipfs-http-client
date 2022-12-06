@@ -1,6 +1,6 @@
 format: 0.2.0
 project:
-  name: ipfs-cat-client-wasm
+  name: ipfs-cat-client-as
   type: wasm/assemblyscript
 source:
   schema: ./src/schema.graphql

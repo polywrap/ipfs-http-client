@@ -1,5 +1,5 @@
 {
-  "name": "ipfs-wasm-rs",
+  "name": "ipfs-api-wasm-rs",
   "description": "A Polywrap Wasm wrapper for executing IPFS operations",
   "private": true,
   "version": "0.1.0",
