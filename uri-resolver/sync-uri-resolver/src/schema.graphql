@@ -18,9 +18,4 @@ type Env {
   Fallback providers
   """
   fallbackProviders: [String!]
-
-  """
-  Disable querying providers in parallel when resolving URIs
-  """
-  disableParallelRequests: Boolean
 }
