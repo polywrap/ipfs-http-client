@@ -1,17 +1,11 @@
 use crate::wrap::Env;
 
 pub struct Options<'t> {
-    pub disable_parallel_requests: bool,
     pub timeout: u32,
     pub providers: Vec<&'t str>,
 }
 
 pub fn get_options<'t>(env: &'t Env) -> Options<'t> {
-
-    let disable_parallel_requests = match env.disable_parallel_requests {
-        Some(env_value) => env_value,
-        None => false
-    };
 
     let timeout = match env.timeout {
         Some(env_value) => env_value,
@@ -30,7 +24,6 @@ pub fn get_options<'t>(env: &'t Env) -> Options<'t> {
     }
 
     Options {
-        disable_parallel_requests,
         timeout,
         providers,
     }

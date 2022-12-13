@@ -9,7 +9,6 @@ import { httpPlugin } from "@polywrap/http-plugin-js";
 export function getClientConfig(
   provider: string,
   timeout?: number,
-  disableParallelRequests?: boolean
 ): PolywrapCoreClientConfig {
   const ipfsResolverPath = path.resolve(path.join(__dirname, "/../../../build"));
   const ipfsResolverUri = `wrap://fs/${ipfsResolverPath}`;
@@ -18,7 +17,7 @@ export function getClientConfig(
     .addEnvs([
         {
           uri: new Uri("wrap://ens/ipfs-resolver.polywrap.eth"),
-          env: { provider: provider, fallbackProviders: ["https://ipfs.wrappers.io"], timeout, disableParallelRequests },
+          env: { provider: provider, fallbackProviders: ["https://ipfs.wrappers.io"], timeout },
         },
       ])
     .addRedirects([

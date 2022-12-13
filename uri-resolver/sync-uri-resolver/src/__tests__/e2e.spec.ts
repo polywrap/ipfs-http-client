@@ -42,7 +42,7 @@ describe("IPFS Plugin", () => {
   });
 
   it("Should successfully resolve a deployed wrapper", async () => {
-    const config = getClientConfig(ipfsProvider, undefined, true);
+    const config = getClientConfig(ipfsProvider, undefined);
     const client = new PolywrapClient(config, { noDefaults: true });
 
     const result = await client.tryResolveUri({ uri: wrapperIpfsUri });
