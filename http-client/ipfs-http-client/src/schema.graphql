@@ -23,7 +23,7 @@ type Module {
   ): AddResult!
 
   addDir(
-    data: DirectoryBlob!
+    data: DirectoryEntry!
     ipfsProvider: String!
     timeout: UInt32
     addOptions: AddOptions
@@ -65,11 +65,6 @@ type FileEntry {
 
 type DirectoryEntry {
   name: String!
-  directories: [DirectoryEntry!]!
-  files: [FileEntry!]!
-}
-
-type DirectoryBlob {
-  directories: [DirectoryEntry!]!
-  files: [FileEntry!]!
+  directories: [DirectoryEntry!]
+  files: [FileEntry!]
 }

@@ -14,7 +14,7 @@ import {
   Http_ResponseType, ResolveResult
 } from "./wrap";
 import {
-  convertDirectoryBlobToFormData,
+  convertDirectoryToFormData,
   ipfsError,
   parseAddDirectoryResponse,
   parseAddResponse, parseResolveResponse
@@ -80,7 +80,7 @@ export function addFile(args: Args_addFile): AddResult {
 
 export function addDir(args: Args_addDir): AddResult[] {
   const request = createAddRequest(
-    convertDirectoryBlobToFormData(args.data),
+    convertDirectoryToFormData(args.data),
     Http_ResponseType.TEXT,
     args.timeout,
     args.addOptions

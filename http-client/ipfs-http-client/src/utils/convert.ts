@@ -1,20 +1,19 @@
 import {
   Http_FormDataEntry,
   DirectoryEntry,
-  DirectoryBlob,
   FileEntry
 } from "../wrap";
 import { encodeURIComponent } from ".";
 import { encode } from "as-base64";
 
-export function convertDirectoryBlobToFormData(directoryBlob: DirectoryBlob): Array<Http_FormDataEntry> {
+export function convertDirectoryToFormData(directory: DirectoryEntry): Array<Http_FormDataEntry> {
     const formData: Http_FormDataEntry[] = []
-    convertFileEntriesToFormData(directoryBlob.files, "", formData);
-    convertDirectoryEntryToFormData(directoryBlob.directories, "", formData);
+    convertDirectoryEntryToFormData([directory], "", formData);
     return formData;
 }
 
-function convertFileEntriesToFormData(files: FileEntry[], path: string, formData: Http_FormDataEntry[]): void {
+function convertFileEntriesToFormData(files: FileEntry[] | null, path: string, formData: Http_FormDataEntry[]): void {
+    if (files === null) return;
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const filePath = path + file.name;
@@ -27,7 +26,8 @@ function convertFileEntriesToFormData(files: FileEntry[], path: string, formData
     }
 }
 
-function convertDirectoryEntryToFormData(dirs: DirectoryEntry[], path: string, formData: Http_FormDataEntry[]): void {
+function convertDirectoryEntryToFormData(dirs: DirectoryEntry[] | null, path: string, formData: Http_FormDataEntry[]): void {
+    if (dirs === null) return;
     for (let i = 0; i < dirs.length; i++) {
         const dir = dirs[i];
         const dirPath = path + dir.name;
