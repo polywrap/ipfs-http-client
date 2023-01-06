@@ -304,4 +304,74 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     ]);
   });
+
+  it("addBlob", async () => {
+    const root: string = path.join(__dirname, "testData", "dirTest");
+
+    const result = await client.invoke<Ipfs.Ipfs_AddResult[]>({
+      uri: fsUri,
+      method: "addBlob",
+      args: {
+        data: {
+          directories: [
+            {
+              name: "directory_A",
+              files: [
+                {
+                  name: "file_A_0.txt",
+                  data: Uint8Array.from(fs.readFileSync(path.join(root, "directory_A", "file_A_0.txt"))),
+                },
+                {
+                  name: "file_A_1.txt",
+                  data: Uint8Array.from(fs.readFileSync(path.join(root, "directory_A", "file_A_1.txt"))),
+                },
+              ]
+            },
+          ],
+          files: [
+            {
+              name: "file_0.txt",
+              data: Uint8Array.from(fs.readFileSync(path.join(root, "file_0.txt"))),
+            },
+            {
+              name: "file_1.txt",
+              data: Uint8Array.from(fs.readFileSync(path.join(root, "file_1.txt"))),
+            },
+          ]
+        },
+        ipfsProvider,
+        timeout: 5000,
+      }
+    });
+
+    if (result.ok === false) fail(result.error);
+    expect(result.value.length).toEqual(5);
+    expect(result.value).toEqual([
+      {
+        "name": "file_0.txt",
+        "hash": "QmV3uDt3KhEYchouUzEbfz7FBA2c2LvNo76dxLLwJW76b1",
+        "size": "14"
+      },
+      {
+        "name": "file_1.txt",
+        "hash": "QmYwMByE4ibjuMu2nRYRfBweJGJErjmMXfZ92srKhYfq5f",
+        "size": "14"
+      },
+      {
+        "name": "directory_A/file_A_0.txt",
+        "hash": "QmeYp73qnn8EdogE4d6BhQCHtep7dkRC8FgdE3Qbo4nY9c",
+        "size": "16"
+      },
+      {
+        "name": "directory_A/file_A_1.txt",
+        "hash": "QmWetZjwHWuGsDyxX6ae5wGS68mFTXC5x61H1TUNxqBXzn",
+        "size": "16"
+      },
+      {
+        "name": "directory_A",
+        "hash": "Qmb5XsySizDeTn1kvNbyiiNy9eyg3Lb6EwGjQt7iiKBxoL",
+        "size": "144"
+      },
+    ]);
+  });
 });

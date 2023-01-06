@@ -11,10 +11,10 @@ import {
   Http_Module,
   Http_Request,
   Http_Response,
-  Http_ResponseType, ResolveResult
+  Http_ResponseType, ResolveResult, Args_addBlob
 } from "./wrap";
 import {
-  convertDirectoryToFormData,
+  convertBlobToFormData,
   ipfsError,
   parseAddDirectoryResponse,
   parseAddResponse, parseResolveResponse
@@ -80,7 +80,7 @@ export function addFile(args: Args_addFile): AddResult {
 
 export function addDir(args: Args_addDir): AddResult[] {
   const request = createAddRequest(
-    convertDirectoryToFormData(args.data),
+    convertBlobToFormData({ directories: [args.data] }),
     Http_ResponseType.TEXT,
     args.timeout,
     args.addOptions
@@ -89,6 +89,22 @@ export function addDir(args: Args_addDir): AddResult[] {
     args.ipfsProvider,
     request,
     "addDir",
+    "/api/v0/add"
+  );
+  return parseAddDirectoryResponse(addDirectoryResponse);
+}
+
+export function addBlob(args: Args_addBlob): AddResult[] {
+  const request = createAddRequest(
+    convertBlobToFormData(args.data),
+    Http_ResponseType.TEXT,
+    args.timeout,
+    args.addOptions
+  );
+  const addDirectoryResponse = executePostOperation(
+    args.ipfsProvider,
+    request,
+    "addBlob",
     "/api/v0/add"
   );
   return parseAddDirectoryResponse(addDirectoryResponse);

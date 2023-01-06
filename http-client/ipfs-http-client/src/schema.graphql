@@ -28,6 +28,13 @@ type Module {
     timeout: UInt32
     addOptions: AddOptions
   ): [AddResult!]!
+
+  addBlob(
+    data: Blob!
+    ipfsProvider: String!
+    timeout: UInt32
+    addOptions: AddOptions
+  ): [AddResult!]!
 }
 
 type CatOptions {
@@ -65,6 +72,11 @@ type FileEntry {
 
 type DirectoryEntry {
   name: String!
+  directories: [DirectoryEntry!]
+  files: [FileEntry!]
+}
+
+type Blob {
   directories: [DirectoryEntry!]
   files: [FileEntry!]
 }

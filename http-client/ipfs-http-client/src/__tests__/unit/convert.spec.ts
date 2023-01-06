@@ -1,5 +1,5 @@
 import {
-  convertDirectoryToFormData
+  convertBlobToFormData
 } from "../../utils";
 import { encode } from "as-base64";
 
@@ -9,9 +9,8 @@ function encode64(str: string): string {
 
 describe('Convert functions tests', () => {
 
-  test("convertDirectoryToFormData", () => {
-    const r = convertDirectoryToFormData({
-      name: "rootDir",
+  test("convertDirectoryBlobToFormData", () => {
+    const r = convertBlobToFormData({
       directories: [
         {
           name: "dirA",
@@ -84,88 +83,82 @@ describe('Convert functions tests', () => {
     })
 
     expect(r).toStrictEqual([
-      {
-        name: "rootDir",
-        value: null,
-        fileName: "rootDir",
-        _type: "application/x-directory"
-      },
         {
-          name: "rootDir/file_0",
+          name: "file_0",
           value: encode64("file_0_data"),
-          fileName: "rootDir%2Ffile_0",
+          fileName: "file_0",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/file_1",
+          name: "file_1",
           value: encode64("file_1_data"),
-          fileName: "rootDir%2Ffile_1",
+          fileName: "file_1",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/dirA",
+          name: "dirA",
           value: null,
-          fileName: "rootDir%2FdirA",
+          fileName: "dirA",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAA",
+          name: "dirA/dirAA",
           value: null,
-          fileName: "rootDir%2FdirA%2FdirAA",
+          fileName: "dirA%2FdirAA",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAA/file_AA_0",
+          name: "dirA/dirAA/file_AA_0",
           value: encode64("file_AA_0_data"),
-          fileName: "rootDir%2FdirA%2FdirAA%2Ffile_AA_0",
+          fileName: "dirA%2FdirAA%2Ffile_AA_0",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/dirA/dirAA/dirAAA",
+          name: "dirA/dirAA/dirAAA",
           value: null,
-          fileName: "rootDir%2FdirA%2FdirAA%2FdirAAA",
+          fileName: "dirA%2FdirAA%2FdirAAA",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAA/dirAAA/dirAAAA",
+          name: "dirA/dirAA/dirAAA/dirAAAA",
           value: null,
-          fileName: "rootDir%2FdirA%2FdirAA%2FdirAAA%2FdirAAAA",
+          fileName: "dirA%2FdirAA%2FdirAAA%2FdirAAAA",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAA/dirAAA/dirAAAA/file_AAAA_0",
+          name: "dirA/dirAA/dirAAA/dirAAAA/file_AAAA_0",
           value: encode64("file_AAAA_0_data"),
-          fileName: "rootDir%2FdirA%2FdirAA%2FdirAAA%2FdirAAAA%2Ffile_AAAA_0",
+          fileName: "dirA%2FdirAA%2FdirAAA%2FdirAAAA%2Ffile_AAAA_0",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/dirA/dirAB",
+          name: "dirA/dirAB",
           value: null,
-          fileName: "rootDir%2FdirA%2FdirAB",
+          fileName: "dirA%2FdirAB",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAB/file_AB_0",
+          name: "dirA/dirAB/file_AB_0",
           value: encode64("file_AB_0_data"),
-          fileName: "rootDir%2FdirA%2FdirAB%2Ffile_AB_0",
+          fileName: "dirA%2FdirAB%2Ffile_AB_0",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/dirA/dirAB/dirABA",
+          name: "dirA/dirAB/dirABA",
           value: null,
-          fileName: "rootDir%2FdirA%2FdirAB%2FdirABA",
+          fileName: "dirA%2FdirAB%2FdirABA",
           _type: "application/x-directory"
         },
         {
-          name: "rootDir/dirA/dirAB/dirABA/file_ABA_0",
+          name: "dirA/dirAB/dirABA/file_ABA_0",
           value: encode64("file_ABA_0_data"),
-          fileName: "rootDir%2FdirA%2FdirAB%2FdirABA%2Ffile_ABA_0",
+          fileName: "dirA%2FdirAB%2FdirABA%2Ffile_ABA_0",
           _type: "application/octet-stream"
         },
         {
-          name: "rootDir/dirA/dirAB/dirABA/file_ABA_1",
+          name: "dirA/dirAB/dirABA/file_ABA_1",
           value: encode64("file_ABA_1_data"),
-          fileName: "rootDir%2FdirA%2FdirAB%2FdirABA%2Ffile_ABA_1",
+          fileName: "dirA%2FdirAB%2FdirABA%2Ffile_ABA_1",
           _type: "application/octet-stream"
         }
       ]

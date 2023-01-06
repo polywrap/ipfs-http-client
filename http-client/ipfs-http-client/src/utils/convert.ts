@@ -1,14 +1,16 @@
 import {
-  Http_FormDataEntry,
-  DirectoryEntry,
-  FileEntry
+    Http_FormDataEntry,
+    DirectoryEntry,
+    FileEntry,
+    Blob
 } from "../wrap";
 import { encodeURIComponent } from ".";
 import { encode } from "as-base64";
 
-export function convertDirectoryToFormData(directory: DirectoryEntry): Array<Http_FormDataEntry> {
+export function convertBlobToFormData(blob: Blob): Array<Http_FormDataEntry> {
     const formData: Http_FormDataEntry[] = []
-    convertDirectoryEntryToFormData([directory], "", formData);
+    convertFileEntriesToFormData(blob.files, "", formData);
+    convertDirectoryEntryToFormData(blob.directories, "", formData);
     return formData;
 }
 
