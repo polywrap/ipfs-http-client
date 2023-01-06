@@ -21,7 +21,7 @@ type Request {
   "If data is not null, the following header will be added to the request: 'Content-Type: multipart/form-data'.
   Either 'body' or 'data' must be null.
   """
-  data: [FormDataEntry!]
+  formData: [FormDataEntry!]
   timeout: UInt32
 }
 

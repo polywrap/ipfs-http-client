@@ -1,1 +1,1 @@
-export * from "./src/wrap";
+export * from "./wrap";

@@ -131,7 +131,7 @@ function createResolveRequest(cid: string, responseType: Http_ResponseType, time
   return { urlParams, responseType, timeout };
 }
 
-function createAddRequest(data: Http_FormDataEntry[], responseType: Http_ResponseType, timeout: Box<u32> | null, options: AddOptions | null = null): Http_Request {
+function createAddRequest(formData: Http_FormDataEntry[], responseType: Http_ResponseType, timeout: Box<u32> | null, options: AddOptions | null = null): Http_Request {
   const headers: Map<string, string> = new Map<string, string>();
   headers.set("Content-Type", "multipart/form-data");
 
@@ -150,7 +150,7 @@ function createAddRequest(data: Http_FormDataEntry[], responseType: Http_Respons
     }
   }
 
-  return { headers, urlParams, responseType, data, timeout };
+  return { headers, urlParams, responseType, formData, timeout };
 }
 
 function executeGetOperation(

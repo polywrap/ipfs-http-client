@@ -36,8 +36,8 @@ export class HttpPlugin extends Module<NoConfig> {
         args.request.body,
         toAxiosRequestConfig(args.request)
       );
-    } else if (args.request?.data) {
-      const data = toFormData(args.request.data);
+    } else if (args.request?.formData) {
+      const data = toFormData(args.request.formData);
       const config = toAxiosRequestConfig(args.request);
       config.headers = {
         ...(config.headers as Record<string, unknown>),

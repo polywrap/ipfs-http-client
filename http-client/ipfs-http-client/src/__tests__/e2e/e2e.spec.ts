@@ -4,7 +4,7 @@ import fs from "fs";
 import * as Ipfs from "./types";
 import { TextEncoder } from "util";
 import { ipfsProvider, initInfra, stopInfra } from "./utils/infra";
-import { defaultIpfsProviders } from "../../../../../../../monorepo/packages/js/client-config-builder/src";
+import { defaultIpfsProviders } from "@polywrap/client-config-builder-js";
 
 jest.setTimeout(360000);
 
@@ -68,7 +68,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value.hash).toEqual(addFileCid);
   });
 
@@ -90,7 +90,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value.hash).toEqual("Qmawvzw32Jq7RbMw2K8axEbzfNK74NPynBoq4tJnWvkYqP");
   });
 
@@ -114,7 +114,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value.hash).toEqual(addFileCid);
   });
 
@@ -129,7 +129,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value.cid).toEqual("/ipfs/" + singleFileCid);
   });
 
@@ -147,7 +147,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value).toEqual(bytes);
   });
 
@@ -168,7 +168,7 @@ describe("IPFS HTTP Client Wrapper", () => {
       }
     });
 
-    if (!result.ok) fail(result.error);
+    if (result.ok === false) fail(result.error);
     expect(result.value).toEqual(expected);
   });
 
