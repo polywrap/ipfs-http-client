@@ -6,5 +6,5 @@ source:
   schema: ./src/schema.graphql
   module: ./src/index.ts
   import_abis:
-    - uri: "ens/http.polywrap.eth"
-      abi: ../../http-plugin-timeout/schema.interface.graphql
+    - uri: "wrap://ens/http.polywrap.eth"
+      abi: ../http-plugin-formdata/schema.interface.graphql

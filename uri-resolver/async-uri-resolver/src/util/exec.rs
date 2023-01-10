@@ -39,7 +39,7 @@ pub fn exec_parallel(
         You can declare an interface implementation in your Polywrap Client configuration.");
         return exec_sequential(providers, cid, timeout);
     }
-    let concurrent_module = ConcurrentModule::new(impls[0].as_str());
+    let concurrent_module = ConcurrentModule::new(impls[0].clone());
 
     // schedule tasks
     let mut tasks: Vec<ConcurrentTask> = Vec::new();

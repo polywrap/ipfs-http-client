@@ -1,4 +1,4 @@
-import { concurrentPromisePlugin } from "@polywrap/concurrent-promise-plugin";
+import { concurrentPromisePlugin } from "concurrent-plugin-js";
 import { PolywrapCoreClientConfig } from "@polywrap/client-js";
 import path from "path";
 import { ClientConfigBuilder } from "@polywrap/client-config-builder-js";
@@ -33,11 +33,11 @@ export function getClientConfig(
           to: new Uri(ipfsResolverUri),
         },
         {
-          from: new Uri("ens/ipfs-resolver-client.polywrap.eth"),
+          from: new Uri("ens/ipfs-http-client.polywrap.eth"),
           to: new Uri(ipfsClientUri),
         },
         {
-          from: new Uri("ens/interface.concurrent.polywrap.eth"),
+          from: new Uri("wrap://ens/goerli/interface.concurrent.wrappers.eth"),
           to: new Uri(concurrencyInterfaceUri),
         },
       ])
@@ -65,7 +65,7 @@ export function getClientConfig(
             new Uri("wrap://ens/fs-resolver.polywrap.eth"),
           ])
     .addInterfaceImplementations(
-      new Uri("ens/interface.concurrent.polywrap.eth"),
+      new Uri("wrap://ens/goerli/interface.concurrent.wrappers.eth"),
       [new Uri("ens/concurrent.polywrap.eth")]
     )
     .buildCoreConfig()

@@ -6,14 +6,12 @@ source:
   module: ./Cargo.toml
   schema: ./src/schema.graphql
   import_abis:
-    - uri: "wrap://ens/interface.resolver.polywrap.eth"
-      abi: "wrap://ipfs/QmYhXZzG25XRkia1pG1fCU79QttfuqYNCatPkaP3yQANTy"
-    - uri: "wrap://ens/ipfs-resolver-client.polywrap.eth"
+    - uri: "wrap://ens/uri-resolver.core.polywrap.eth"
+      abi: ./schema.resolver.graphql
+    - uri: "wrap://ens/ipfs-http-client.polywrap.eth"
       abi: ../../http-client/ipfs-http-client/src/schema.graphql
     - uri: "wrap://ens/http.polywrap.eth"
-      abi: "wrap://ipfs/QmQdVmj8foUh33boKCEAy99Z4Mnqu36myPQYw1tBXhnrEz"
-    - uri: "wrap://ens/interface.concurrent.polywrap.eth"
-      abi: "wrap://ens/goerli/interface.concurrent.wrappers.eth"
+      abi: ../../http-client/http-plugin-formdata/schema.interface.graphql
 extensions:
   build: ./polywrap.build.yaml
   deploy: ./polywrap.deploy.yaml

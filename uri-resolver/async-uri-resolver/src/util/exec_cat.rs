@@ -15,17 +15,19 @@ pub fn exec_cat(ipfs_provider: &str, cid: &str, timeout: u32) -> Result<Vec<u8>,
         cid: cid.to_string(),
         ipfs_provider: ipfs_provider.to_string(),
         timeout: Some(timeout),
+        cat_options: None,
     });
 }
 
 pub fn cat_task(ipfs_provider: &str, cid: &str, timeout: u32) -> ConcurrentTask {
     ConcurrentTask {
-        uri: String::from("ens/ipfs-resolver-client.polywrap.eth"), // TODO: replace with interface
+        uri: String::from("wrap://ens/ipfs-http-client.polywrap.eth"),
         method: String::from("cat"),
         args: serialize_cat_args(&ClientArgsCat {
             cid: cid.to_string(),
             ipfs_provider: ipfs_provider.to_string(),
             timeout: Some(timeout),
+            cat_options: None,
         }).unwrap()
     }
 }

@@ -4,7 +4,11 @@ pub mod util;
 pub use util::*;
 use cid::Cid;
 
-pub fn try_resolve_uri(args: ArgsTryResolveUri, env: Env) -> Option<UriResolverMaybeUriOrManifest> {
+pub fn try_resolve_uri(args: ArgsTryResolveUri, env: Option<Env>) -> Option<UriResolverMaybeUriOrManifest> {
+    if env.is_none() {
+        panic!("Ipfs uri resolver requires a configured Env")
+    }
+
     if args.authority != "ipfs" {
         return None;
     }
@@ -20,7 +24,8 @@ pub fn try_resolve_uri(args: ArgsTryResolveUri, env: Env) -> Option<UriResolverM
     return Some(UriResolverMaybeUriOrManifest { manifest, uri: None });
 }
 
-pub fn get_file(args: ArgsGetFile, env: Env) -> Option<Vec<u8>> {
+pub fn get_file(args: ArgsGetFile, env: Option<Env>) -> Option<Vec<u8>> {
+    let env = env.expect("Ipfs uri resolver requires a configured Env");
     let options: Options = get_options(&env);
     if options.disable_parallel_requests || options.providers.len() == 1 {
         return exec_sequential(&options.providers, &args.path, options.timeout).ok();
