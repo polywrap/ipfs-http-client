@@ -5,9 +5,19 @@
 
 type Module implements UriResolver_Module {}
 
+type Retries {
+  tryResolveUri: UInt32
+  getFile: UInt32
+}
+
 type Env {
   """
-  Global timeout for IPFS actions
+  Retry request on failure
+  """
+  retries: Retries
+
+  """
+  Response timeout for HTTP requests
   """
   timeout: UInt32
 

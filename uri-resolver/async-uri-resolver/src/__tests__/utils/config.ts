@@ -9,7 +9,8 @@ import { httpPlugin } from "@polywrap/http-plugin-js";
 
 export function getClientConfig(
   provider: string,
-  timeout?: number
+  timeout?: number,
+  retries?: { tryResolveUri: number; getFile: number },
 ): PolywrapCoreClientConfig {
   const ipfsResolverPath = path.resolve(path.join(__dirname, "/../../../build"));
   const ipfsResolverUri = `wrap://fs/${ipfsResolverPath}`;
@@ -24,7 +25,7 @@ export function getClientConfig(
     .addEnvs([
         {
           uri: new Uri("wrap://ens/ipfs-resolver.polywrap.eth"),
-          env: { provider, timeout },
+          env: { provider, timeout, retries },
         },
       ])
     .addRedirects([
