@@ -7,7 +7,7 @@ source:
   module: ./src/index.ts
   import_abis:
     - uri: "ens/http.polywrap.eth"
-      abi: ../http-plugin-formdata/schema.interface.graphql
+      abi: ./schema.http.graphql
 extensions:
   deploy: ./polywrap.deploy.yaml
 
