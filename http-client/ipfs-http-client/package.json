@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npx polywrap build -s image",
     "codegen": "npx polywrap codegen",
-    "deploy": "npx polywrap deploy",
+    "deploy": "npx polywrap deploy -o deployment.json",
     "test": "yarn test:unit && yarn test:e2e",
     "test:ci": "yarn test:unit && yarn test:e2e",
     "test:unit": "asp --verbose",
