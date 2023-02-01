@@ -5,7 +5,7 @@
   "private": true,
   "license": "MIT",
   "scripts": {
-    "build": "npx polywrap build -s image",
+    "build": "yarn codegen && npx polywrap build -s image",
     "codegen": "npx polywrap codegen",
     "deploy": "npx polywrap deploy -o deployment.json",
     "test": "yarn test:unit && yarn test:e2e",

@@ -5,6 +5,7 @@ import * as Ipfs from "./types";
 import { TextEncoder } from "util";
 import { ipfsProvider, initInfra, stopInfra } from "./utils/infra";
 import { defaultIpfsProviders } from "@polywrap/client-config-builder-js";
+import {httpPlugin} from "@polywrap/http-plugin-js";
 
 jest.setTimeout(360000);
 
@@ -21,15 +22,17 @@ describe("IPFS HTTP Client Wrapper", () => {
 
     // create client
     client = new PolywrapClient({
-      envs: [
-        {
+      envs: [{
           uri: "wrap://ens/ipfs.polywrap.eth",
           env: {
             provider: ipfsProvider,
             fallbackProviders: defaultIpfsProviders,
           },
-        },
-      ]
+      }],
+      packages: [{
+        uri: "wrap://ens/wrappers.polywrap.eth:http@1.1.0",
+        package: httpPlugin({})
+      }],
     })
 
     const apiPath = path.resolve(path.join(__dirname, "/../../../"));
