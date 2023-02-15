@@ -30,7 +30,7 @@ describe("IPFS HTTP Client Wrapper", () => {
           },
       }],
       packages: [{
-        uri: "wrap://ens/wrappers.polywrap.eth:http@1.1.0",
+        uri: "wrap://ens/wraps.eth:http@1.1.0",
         package: httpPlugin({})
       }],
     })
