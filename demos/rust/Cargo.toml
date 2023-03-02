@@ -1,0 +1,10 @@
+[package]
+name = "ipfs-rust-app-demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+polywrap_client = "0.1.0"
+polywrap_core = "0.1.0"
+polywrap_client_builder = "0.1.0"
+tokio = { version = "1.23.0", features = ["full"] }

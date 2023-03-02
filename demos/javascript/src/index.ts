@@ -3,7 +3,6 @@ import { IpfsHttpClient_Module } from "./wrap";
 import { PolywrapClient, ClientConfigBuilder } from "@polywrap/client-js";
 import path from "path";
 
-
 const ipfsProvider = "http://localhost:5001";
 const uri = "ens/wraps.eth:ipfs-http-client@1.0.0";
 const localUri = `file/${path.join(__dirname, "../../../wrappers/ipfs-http-client/build")}`
@@ -36,7 +35,7 @@ async function main() {
 
   const cid = addFileResult.value.hash;
 
-  console.log("Successfuly Added: ", cid);
+  console.log("Successfully Added: ", cid);
 
   const catResult = await IpfsHttpClient_Module.cat({
     cid,
