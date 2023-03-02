@@ -1,4 +1,4 @@
 format: 0.1.0
 modules:
   ipfs:
-    path: ../common/infra/
+    path: ../../infra/local-ipfs-node
