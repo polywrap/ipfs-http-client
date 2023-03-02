@@ -1,0 +1,1 @@
+#import * into IpfsHttpClient from "ens/wraps.eth:ipfs-http-client@1.0.0"
