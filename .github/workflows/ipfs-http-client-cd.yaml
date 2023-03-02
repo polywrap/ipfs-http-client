@@ -3,8 +3,10 @@ name: ipfs-http-client-cd
 on:
   pull_request:
     types: [closed]
+    branches:
+      - main
     paths:
-      - "http-client/ipfs-http-client/**"
+      - "wrappers/ipfs-http-client/**"
 
 jobs:
   cd:
@@ -22,7 +24,7 @@ jobs:
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
         id: nvm
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -31,15 +33,15 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --nonInteractive --frozen-lockfile --prefer-offline
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Build
         run: yarn build
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Deploy
         run: yarn deploy
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: PR New URI
         uses: peter-evans/create-pull-request@v3

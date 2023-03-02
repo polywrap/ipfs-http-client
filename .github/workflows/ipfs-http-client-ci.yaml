@@ -3,7 +3,7 @@ name: ipfs-http-client-ci
 on:
   pull_request:
     paths:
-      - "http-client/ipfs-http-client/**"
+      - "wrappers/ipfs-http-client/**"
 
 jobs:
   ci:
@@ -17,7 +17,7 @@ jobs:
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
         id: nvm
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -26,17 +26,12 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --nonInteractive --frozen-lockfile --prefer-offline
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Build
         run: yarn build
-        working-directory: ./http-client/ipfs-http-client
-
-      # for now, need to build http-plugin-formdata before testing wrapper
-      - name: Install plugin dependencies and build plugin
-        run: yarn install --nonInteractive --frozen-lockfile --prefer-offline && yarn build
-        working-directory: ./http-client/http-plugin-formdata
+        working-directory: ./wrappers/ipfs-http-client
 
       - name: Test
         run: yarn test
-        working-directory: ./http-client/ipfs-http-client
+        working-directory: ./wrappers/ipfs-http-client
