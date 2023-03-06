@@ -1,0 +1,35 @@
+{
+  "folders": [
+      {
+        "name": "root",
+        "path": ".",
+      },
+      {
+          "name": "ipfs-js-demo",
+          "path": "demos/javascript"
+      },
+      {
+          "name": "ipfs-py-demo",
+          "path": "demos/python"
+      },
+      {
+          "name": "ipfs-rs-demo",
+          "path": "demos/rust"
+      },
+      {
+        "name": "local-ipfs-node-infra",
+        "path": "infra/local-ipfs-node"
+      },
+      {
+        "name": "ipfs-http-client-wrapper",
+        "path": "wrappers/ipfs-http-client"
+      },
+  ],
+  "settings": {
+      "files.exclude": {
+        "**/demos/*": true,
+        "**/infra/*": true,
+        "**/wrappers/*": true,
+      },
+  }
+}
