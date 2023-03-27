@@ -4,7 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-polywrap_client = "0.1.0"
-polywrap_core = "0.1.0"
-polywrap_client_builder = "0.1.0"
+polywrap_client = { path = "../../../rust-client/packages/client" }
+polywrap_core = { path = "../../../rust-client/packages/core" }
+polywrap_client_builder= { path = "../../../rust-client/packages/builder" }
 tokio = { version = "1.23.0", features = ["full"] }
+serde = { version = "1.0"}
