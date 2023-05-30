@@ -4,8 +4,9 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-polywrap_client ={ version = "0.1.6-beta.1" }
-polywrap_client_default_config = { version = "0.0.2" }
+polywrap_client = { version = "0.1.6-beta.2" }
+polywrap_client_default_config = { version = "0.0.3-beta.1" }
 
 tokio = { version = "1.23.0", features = ["full"] }
 serde = { version = "1.0"}
+serde_bytes = "0.11.9"
