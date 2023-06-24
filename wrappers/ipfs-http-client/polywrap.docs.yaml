@@ -1,5 +1,5 @@
 format: 0.1.0
-description: Interact with the Uniswap V3 contract.
+description: Allows basic interaction with IPFS nodes.
 website: https://polywrap.io
-repository: https://github.com/polywrap/
+repository: https://github.com/polywrap/ipfs/
 readme: ./docs/readme.md
