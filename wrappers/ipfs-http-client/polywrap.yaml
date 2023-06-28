@@ -1,6 +1,6 @@
 format: 0.4.0
 project:
-  name: ipfs-http-client-as
+  name: ipfs-http-client
   type: wasm/assemblyscript
 source:
   schema: ./src/schema.graphql
