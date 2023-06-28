@@ -1,5 +1,5 @@
 format: 0.1.0
-description: Allows basic interaction with IPFS nodes.
+description: Client library for the IPFS HTTP API
 website: https://polywrap.io
 repository: https://github.com/polywrap/ipfs/
 readme: ./docs/readme.md
