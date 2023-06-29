@@ -14,4 +14,4 @@ You can check out the IPFS HTTP Client wrap's schema for a list of methods, or [
 
 ## Support
 
-For any questions or problems related to the The IPFS HTTP Client wrap wrap or Polywrap at large, please visit our [Discord](https://discord.polywrap.io).
+For any questions or problems related to the The IPFS HTTP Client wrap or Polywrap at large, please visit our [Discord](https://discord.polywrap.io).
