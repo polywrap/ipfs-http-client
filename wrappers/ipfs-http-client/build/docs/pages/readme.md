@@ -1,36 +1,16 @@
 # The IPFS HTTP Client Wrap
 
-The IPFS HTTP Client wrap allows for basic interaction with IPFS endpoints, such as `ipfs.wrappers.io` which serves Polywrap wraps.
+The IPFS HTTP Client wrap allows for interaction with IPFS endpoints, such as `ipfs.wrappers.io` which serves Polywrap wraps.
 
-## Integrate
+## Requirements
 
-### Step 1: Polywrap Client
+To run the IPFS HTTP Client wrap you'll need a Polywrap client in your application. See here for installation information: [https://docs.polywrap.io/clients](https://docs.polywrap.io/clients)
 
-The Polywrap client comes with the IPFS HTTP Client wrap pre-bundled. Currently Polywrap has clients available in:
-- JavaScript / TypeScript
-- Python
-- Rust
-- Swift
+## Run!
 
-### Step 2: Run!
+With your client successfully configured, you can now run any function on the IPFS HTTP Client wrap with ease.
 
-With your client successfully configured, you can now run any function on the The IPFS HTTP Client wrap wrap with ease.
-
-You can execute functions in TypeScript with the `client.invoke(...)` syntax like so:
-```typescript
-await client.invoke({
-  uri: "wrap://ens/wraps.eth:ipfs-http-client@1.0.0",
-  method: "cat",
-  args: {...}
-});
-```
-
-Or you can keep it type-safe by using Polywrap's `codegen` like so:
-```typescript
-await Ipfs.cat({...});
-```
-
-If you'd like to generate typings for the The IPFS HTTP Client wrap wrap, you can see an example of this in [Polywrap's Quick Start guide](https://docs.polywrap.io/quick-start#generating-types-codegen).
+You can check out the IPFS HTTP Client wrap's schema for a list of methods, or [check out its tests](https://github.com/polywrap/ipfs/blob/main/wrappers/ipfs-http-client/src/__tests__/e2e/e2e.spec.ts) for detailed usage examples.
 
 ## Support
 
