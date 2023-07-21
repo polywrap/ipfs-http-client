@@ -1,17 +1,20 @@
 import {
+  ModuleBase,
   AddOptions,
   AddResult,
+  CatOptions,
+  ResolveOptions,
+  ResolveResult,
   Args_addFile,
   Args_addDir,
   Args_cat,
   Args_resolve,
-  CatOptions,
-  ResolveOptions,
+  Args_addBlob,
   Http_FormDataEntry,
   Http_Module,
   Http_Request,
   Http_Response,
-  Http_ResponseType, ResolveResult, Args_addBlob
+  Http_ResponseType,
 } from "./wrap";
 import {
   convertBlobToFormData,
@@ -23,91 +26,93 @@ import {
 import { decode, encode } from "as-base64";
 import { Box, Result } from "@polywrap/wasm-as";
 
-export function cat(args: Args_cat): ArrayBuffer {
-  const request = createCatRequest(
-    args.cid,
-    Http_ResponseType.BINARY,
-    args.timeout,
-    args.catOptions
-  );
-  const result = executeGetOperation(
-    args.ipfsProvider,
-    request,
-    "cat",
-    "/api/v0/cat"
-  );
-  return decode(result).buffer;
-}
+export class Module extends ModuleBase {
+  cat(args: Args_cat): ArrayBuffer {
+    const request = createCatRequest(
+      args.cid,
+      Http_ResponseType.BINARY,
+      args.timeout,
+      args.catOptions
+    );
+    const result = executeGetOperation(
+      args.ipfsProvider,
+      request,
+      "cat",
+      "/api/v0/cat"
+    );
+    return decode(result).buffer;
+  }
 
-export function resolve(args: Args_resolve): ResolveResult {
-  const request = createResolveRequest(
-    args.cid,
-    Http_ResponseType.TEXT,
-    args.timeout,
-    args.resolveOptions
-  );
-  const resolveResponse = executeGetOperation(
-    args.ipfsProvider,
-    request,
-    "resolve",
-    "/api/v0/resolve"
-  );
-  return {
-    cid: parseResolveResponse(resolveResponse),
-    provider: args.ipfsProvider,
-  };
-}
+  resolve(args: Args_resolve): ResolveResult {
+    const request = createResolveRequest(
+      args.cid,
+      Http_ResponseType.TEXT,
+      args.timeout,
+      args.resolveOptions
+    );
+    const resolveResponse = executeGetOperation(
+      args.ipfsProvider,
+      request,
+      "resolve",
+      "/api/v0/resolve"
+    );
+    return {
+      cid: parseResolveResponse(resolveResponse),
+      provider: args.ipfsProvider,
+    };
+  }
 
-export function addFile(args: Args_addFile): AddResult {
-  const request = createAddRequest([{
-      name: args.data.name,
-      value: encode(Uint8Array.wrap(args.data.data)),
-      fileName: args.data.name,
-      _type: "application/octet-stream"
-    }],
-    Http_ResponseType.TEXT,
-    args.timeout,
-    args.addOptions
-  );
-  const addResponse = executePostOperation(
-    args.ipfsProvider,
-    request,
-    "add",
-    "/api/v0/add"
-  );
-  return parseAddResponse(addResponse);
-}
+  addFile(args: Args_addFile): AddResult {
+    const request = createAddRequest([{
+        name: args.data.name,
+        value: encode(Uint8Array.wrap(args.data.data)),
+        fileName: args.data.name,
+        _type: "application/octet-stream"
+      }],
+      Http_ResponseType.TEXT,
+      args.timeout,
+      args.addOptions
+    );
+    const addResponse = executePostOperation(
+      args.ipfsProvider,
+      request,
+      "add",
+      "/api/v0/add"
+    );
+    return parseAddResponse(addResponse);
+  }
 
-export function addDir(args: Args_addDir): AddResult[] {
-  const request = createAddRequest(
-    convertBlobToFormData({ directories: [args.data] }),
-    Http_ResponseType.TEXT,
-    args.timeout,
-    args.addOptions
-  );
-  const addDirectoryResponse = executePostOperation(
-    args.ipfsProvider,
-    request,
-    "addDir",
-    "/api/v0/add"
-  );
-  return parseAddDirectoryResponse(addDirectoryResponse);
-}
+  addDir(args: Args_addDir): AddResult[] {
+    const request = createAddRequest(
+      convertBlobToFormData({ directories: [args.data] }),
+      Http_ResponseType.TEXT,
+      args.timeout,
+      args.addOptions
+    );
+    const addDirectoryResponse = executePostOperation(
+      args.ipfsProvider,
+      request,
+      "addDir",
+      "/api/v0/add"
+    );
+    return parseAddDirectoryResponse(addDirectoryResponse);
+  }
 
-export function addBlob(args: Args_addBlob): AddResult[] {
-  const request = createAddRequest(
-    convertBlobToFormData(args.data),
-    Http_ResponseType.TEXT,
-    args.timeout,
-    args.addOptions
-  );
-  const addDirectoryResponse = executePostOperation(
-    args.ipfsProvider,
-    request,
-    "addBlob",
-    "/api/v0/add"
-  );
-  return parseAddDirectoryResponse(addDirectoryResponse);
+  addBlob(args: Args_addBlob): AddResult[] {
+    const request = createAddRequest(
+      convertBlobToFormData(args.data),
+      Http_ResponseType.TEXT,
+      args.timeout,
+      args.addOptions
+    );
+    const addDirectoryResponse = executePostOperation(
+      args.ipfsProvider,
+      request,
+      "addBlob",
+      "/api/v0/add"
+    );
+    return parseAddDirectoryResponse(addDirectoryResponse);
+  }
 }
 
 function createCatRequest(cid: string, responseType: Http_ResponseType, timeout: Box<u32> | null, options: CatOptions | null = null): Http_Request {
