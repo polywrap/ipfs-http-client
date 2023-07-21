@@ -1,11 +1,11 @@
-import { runCLI } from "@polywrap/test-env-js";
 import axios from "axios";
+import { runCli } from "@polywrap/cli-js";
 
 export const ipfsProvider = "http://localhost:5001";
 
 export async function initInfra(): Promise<void> {
-  const { exitCode, stderr, stdout } = await runCLI({
-    args: ["infra", "up", "--verbose"]
+  const { exitCode, stderr, stdout } = await runCli({
+    args: ["infra", "up", "--verbose"],
   });
 
   if (exitCode) {
@@ -31,8 +31,8 @@ export async function initInfra(): Promise<void> {
 }
 
 export async function stopInfra(): Promise<void> {
-  const { exitCode, stderr, stdout } = await runCLI({
-    args: ["infra", "down", "--verbose"]
+  const { exitCode, stderr, stdout } = await runCli({
+    args: ["infra", "down", "--verbose"],
   });
 
   if (exitCode) {
