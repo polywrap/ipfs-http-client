@@ -31,6 +31,11 @@ class IpfsViewModel: ViewModel() {
             output += "Cat Result: $text\n"
         }
     }
+
+    override fun onCleared() {
+        super.onCleared()
+        client.close()
+    }
 }
 
 
