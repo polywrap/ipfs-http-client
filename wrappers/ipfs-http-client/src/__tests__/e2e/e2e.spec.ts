@@ -1,4 +1,9 @@
-import { PolywrapClient } from "@polywrap/client-js";
+import {
+  IWrapPackage,
+  PolywrapClient,
+  PolywrapClientConfigBuilder
+} from "@polywrap/client-js";
+import { httpPlugin } from "@polywrap/http-plugin-js";
 import path from "path";
 import fs from "fs";
 import * as Ipfs from "./types";
@@ -18,7 +23,14 @@ describe("IPFS HTTP Client Wrapper", () => {
   beforeAll(async () => {
     await initInfra();
 
-    client = new PolywrapClient();
+    const builder = new PolywrapClientConfigBuilder()
+      .addDefaults()
+      .setPackage(
+        "wrapscan.io/polywrap/http@1.0",
+        httpPlugin({ }) as IWrapPackage
+      );
+
+    client = new PolywrapClient(builder.build());
 
     const apiPath = path.resolve(path.join(__dirname, "/../../../"));
     fsUri = `wrap://fs/${apiPath}/build`;
@@ -30,7 +42,7 @@ describe("IPFS HTTP Client Wrapper", () => {
     const bytes: Ipfs.Bytes = Uint8Array.from(buffer);
 
     const result = await client.invoke<Ipfs.Ipfs_AddResult>({
-      uri: "ens/wraps.eth:ipfs-http-client@1.0.0",
+      uri: fsUri,
       method: "addFile",
       args: {
         data: {
