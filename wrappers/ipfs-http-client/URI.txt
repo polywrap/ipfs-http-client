@@ -1,1 +1,1 @@
-wrap://ipfs/QmNow41R8BTZj4spdfLVkMZHUna8Vs13MUt5aMGAX2ke7G
+wrap://http/https://wraps.wrapscan.io/r/polywrap/ipfs-http-client@1.0.0
