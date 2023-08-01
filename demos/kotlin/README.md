@@ -37,7 +37,7 @@ cd ../../infra/local-ipfs-node && docker compose up && cd ../../demos/kotlin
 
 Now run the app on an emulator or device. When the app starts, you'll see two text boxes and a button. If you did everything correctly, when you click the button you should see the content of the file you added to IPFS.
 
-![Expected Output](./expected.png)
+<img src="./expected.png" width="275px">
 
 ## **What Happened Explained**
 
