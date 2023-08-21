@@ -11,21 +11,21 @@
     "test:e2e:codegen": "npx polywrap codegen -m ./src/__tests__/e2e/types/polywrap.app.yaml -g ./src/__tests__/e2e/types/wrap"
   },
   "dependencies": {
-    "@polywrap/wasm-as": "~0.11.0-pre.0",
+    "@polywrap/wasm-as": "0.11.2",
     "as-base64": "0.2.0"
   },
   "devDependencies": {
     "@as-pect/cli": "6.2.4",
-    "@polywrap/cli-js": "~0.11.0-pre.0",
-    "@polywrap/client-config-builder-js": "~0.12.0-pre.0",
-    "@polywrap/client-js": "~0.12.0-pre.0",
+    "@polywrap/cli-js": "0.11.2",
+    "@polywrap/client-config-builder-js": "0.12.2",
+    "@polywrap/client-js": "0.12.2",
     "@polywrap/http-plugin-js": "~0.10.0",
     "@types/jest": "26.0.8",
     "@types/node": "16.11.64",
     "assemblyscript": "0.19.23",
     "axios": "0.21.4",
     "jest": "26.6.3",
-    "polywrap": "~0.11.0-pre.0",
+    "polywrap": "0.11.2",
     "ts-jest": "26.5.4",
     "ts-node": "10.9.1",
     "typescript": "4.6.4"
