@@ -191,7 +191,46 @@ describe("IPFS HTTP Client Wrapper", () => {
     expect(result.value).toEqual(expected);
   });
 
-  it("addDir", async () => {
+  it("addDir - directory w/ single-file", async () => {
+    const root: string = path.join(__dirname, "testData", "dirTest");
+
+    const result = await client.invoke<Ipfs.Ipfs_AddResult[]>({
+      uri: fsUri,
+      method: "addDir",
+      args: {
+        data: {
+          name: "dirTest",
+          files: [
+            {
+              name: "file_0.txt",
+              data: Uint8Array.from(
+                fs.readFileSync(path.join(root, "file_0.txt"))
+              ),
+            },
+          ],
+        },
+        ipfsProvider,
+        timeout: 5000,
+      },
+    });
+
+    if (result.ok === false) fail(result.error);
+    expect(result.value.length).toEqual(2);
+    expect(result.value).toEqual([
+      {
+        name: "dirTest/file_0.txt",
+        hash: "QmV3uDt3KhEYchouUzEbfz7FBA2c2LvNo76dxLLwJW76b1",
+        size: "14",
+      },
+      {
+        name: "dirTest",
+        hash: "QmQkRYKmLKCnCToehkLqNi6iJ4waLKxanXRBDqE7uTp1t5",
+        size: "70",
+      },
+    ]);
+  });
+
+  it("addDir - complex", async () => {
     const root: string = path.join(__dirname, "testData", "dirTest");
 
     const result = await client.invoke<Ipfs.Ipfs_AddResult[]>({
