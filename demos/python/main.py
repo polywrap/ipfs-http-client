@@ -21,7 +21,7 @@ async def main():
     config = PolywrapClientConfig(resolver=resolver)
     client = PolywrapClient(config)
 
-    ipfs_wrapper_path = Path(__file__).parent.parent.parent.joinpath("wrappers", "ipfs-http-client", "build")
+    ipfs_wrapper_path = Path(__file__).parent.parent.parent.joinpath("wraps", "ipfs-http-client", "build")
     ipfs_wrapper_uri = Uri(f"fs/{ipfs_wrapper_path}")
 
     result = await client.invoke(

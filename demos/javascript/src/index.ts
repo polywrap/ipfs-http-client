@@ -5,7 +5,7 @@ import path from "path";
 
 const ipfsProvider = "http://localhost:5001";
 const uri = "ens/wraps.eth:ipfs-http-client@1.0.0";
-const localUri = `file/${path.join(__dirname, "../../../wrappers/ipfs-http-client/build")}`
+const localUri = `file/${path.join(__dirname, "../../../wraps/ipfs-http-client/build")}`
 
 async function main() {
 
