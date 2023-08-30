@@ -32,7 +32,7 @@ Set up the test environment:
 > Ensure your system's Docker Daemon is running.
 
 ```bash
-cd ../../infra/local-ipfs-node && docker compose up && cd ../../demos/kotlin
+cd ../../infra && docker compose up && cd ../../demos/kotlin
 ```
 
 Now run the app on an emulator or device. When the app starts, you'll see two text boxes and a button. If you did everything correctly, when you click the button you should see the content of the file you added to IPFS.

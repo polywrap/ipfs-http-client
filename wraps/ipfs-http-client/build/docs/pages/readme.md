@@ -10,7 +10,7 @@ To run the IPFS HTTP Client wrap you'll need a Polywrap client in your applicati
 
 With your client successfully configured, you can now run any function on the IPFS HTTP Client wrap with ease.
 
-You can check out the IPFS HTTP Client wrap's schema for a list of methods, or [check out its tests](https://github.com/polywrap/ipfs/blob/main/wrappers/ipfs-http-client/src/__tests__/e2e/e2e.spec.ts) for detailed usage examples.
+You can check out the IPFS HTTP Client wrap's schema for a list of methods, or [check out its tests](https://github.com/polywrap/ipfs/blob/main/wraps/ipfs-http-client/src/__tests__/e2e/e2e.spec.ts) for detailed usage examples.
 
 ## Support
 

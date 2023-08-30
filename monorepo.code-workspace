@@ -17,19 +17,19 @@
           "path": "demos/rust"
       },
       {
-        "name": "local-ipfs-node-infra",
-        "path": "infra/local-ipfs-node"
+        "name": "infra",
+        "path": "infra"
       },
       {
         "name": "ipfs-http-client-wrapper",
-        "path": "wrappers/ipfs-http-client"
+        "path": "wraps/ipfs-http-client"
       },
   ],
   "settings": {
       "files.exclude": {
         "**/demos/*": true,
         "**/infra/*": true,
-        "**/wrappers/*": true,
+        "**/wraps/*": true,
       },
   }
 }

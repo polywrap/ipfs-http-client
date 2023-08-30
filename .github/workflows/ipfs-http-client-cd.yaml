@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - "wrappers/ipfs-http-client/**"
+      - "wraps/ipfs-http-client/**"
 
 jobs:
   cd:
@@ -24,7 +24,7 @@ jobs:
       - name: Read .nvmrc
         run: echo ::set-output name=NVMRC::$(cat .nvmrc)
         id: nvm
-        working-directory: ./wrappers/ipfs-http-client
+        working-directory: ./wraps/ipfs-http-client
 
       - name: Setup Node.js
         uses: actions/setup-node@master
@@ -33,15 +33,15 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --nonInteractive --frozen-lockfile --prefer-offline
-        working-directory: ./wrappers/ipfs-http-client
+        working-directory: ./wraps/ipfs-http-client
 
       - name: Build
         run: yarn build
-        working-directory: ./wrappers/ipfs-http-client
+        working-directory: ./wraps/ipfs-http-client
 
       - name: Deploy
         run: yarn deploy
-        working-directory: ./wrappers/ipfs-http-client
+        working-directory: ./wraps/ipfs-http-client
         env:
           POLYWRAP_WRAPSCAN_AUTH_HEADER_PROD: ${{secrets.POLYWRAP_WRAPSCAN_AUTH_HEADER_PROD}}
 
