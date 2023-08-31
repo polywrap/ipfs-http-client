@@ -49,7 +49,7 @@ android {
 
 dependencies {
     // polywrap
-    implementation("io.polywrap:polywrap-client:0.11.0-SNAPSHOT")
+    implementation("io.polywrap:polywrap-client:0.10.4")
     implementation "org.jetbrains.kotlinx:kotlinx-serialization-core:1.5.1"
 
     // ui
