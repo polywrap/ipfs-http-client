@@ -1,1 +1,1 @@
-#import * into IpfsHttpClient from "ens/wraps.eth:ipfs-http-client@1.0.0"
+#import * into IpfsHttpClient from "wrapscan.io/polywrap/ipfs-http-client"

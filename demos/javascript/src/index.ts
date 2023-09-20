@@ -1,17 +1,11 @@
-import { IpfsHttpClient_Module } from "./wrap";
-
-import { PolywrapClient, ClientConfigBuilder } from "@polywrap/client-js";
-import path from "path";
+import { IpfsHttpClient } from "./wrap";
+import { PolywrapClient, PolywrapClientConfigBuilder } from "@polywrap/client-js";
 
 const ipfsProvider = "http://localhost:5001";
-const uri = "ens/wraps.eth:ipfs-http-client@1.0.0";
-const localUri = `file/${path.join(__dirname, "../../../wraps/ipfs-http-client/build")}`
 
 async function main() {
-
-  const config = new ClientConfigBuilder()
+  const config = new PolywrapClientConfigBuilder()
     .addDefaults()
-    .addRedirect(uri, localUri)
     .build();
 
   const client = new PolywrapClient(config);
@@ -23,7 +17,9 @@ async function main() {
   console.log("File Data: ", fileData);
   console.log("===========================");
 
-  const addFileResult = await IpfsHttpClient_Module.addFile({
+  const ipfsClient =  new IpfsHttpClient();
+  
+  const addFileResult = await ipfsClient.addFile({
     data: {
       name: fileName,
       data: new TextEncoder().encode(fileData)
@@ -37,7 +33,7 @@ async function main() {
 
   console.log("Successfully Added: ", cid);
 
-  const catResult = await IpfsHttpClient_Module.cat({
+  const catResult = await ipfsClient.cat({
     cid,
     ipfsProvider
   }, client);
